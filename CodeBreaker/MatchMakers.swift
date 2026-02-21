@@ -7,12 +7,6 @@
 
 import SwiftUI
 
-enum Match {
-    case nomatch
-    case exact
-    case inexact
-}
-
 struct MatchMakers: View {
     
     var matches: [Match]
@@ -33,9 +27,23 @@ struct MatchMakers: View {
     
     func matchMaker(peg: Int) -> some View {
         
-        let exactCount: Int = matches.count(where: {match in match == .exact})
+        let exactCount = matches.count {$0 == .exact}
         
-        let foundCount: Int = matches.count(where: {match in match != .nomatch })
+        /**
+         let miniExactCount: Int = matches.count(where: {match in match == .exact})
+         
+         let longExactCount: Int = matches.count(where: {(match: Match) -> Bool in match == .exact})
+         
+         let moreLongExactCount: Int = matches.count(where: isExact)
+         
+         func isExact(match: Match) -> Bool {
+             
+             return match == Match.exact
+         }
+         */
+        
+        
+        let foundCount: Int = matches.count {$0 != .nomatch }
                 
         return  Circle()
             .fill(exactCount > peg ? Color.primary : Color.clear)
@@ -44,6 +52,12 @@ struct MatchMakers: View {
         
     }
     
+}
+
+enum Match {
+    case nomatch
+    case exact
+    case inexact
 }
 
 #Preview {

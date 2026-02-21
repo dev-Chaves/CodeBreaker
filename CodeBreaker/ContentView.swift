@@ -12,7 +12,10 @@ struct ContentView: View {
     var body: some View {
         VStack{
             
-            Text("Code Breaker").font(.largeTitle).bold().italic()
+            Text("CodeBreaker")
+                .font(.largeTitle)
+                .bold()
+                .italic()
             
             pegs(colors: [.red , .blue, .green, .purple])
             pegs(colors: [.green , .blue, .red, .purple])
@@ -32,10 +35,11 @@ struct ContentView: View {
                     .foregroundColor(colors[index])
             })
             
-            MatchMakers(matches: [.exact, .inexact, .nomatch])
+            MatchMakers(matches: [.exact, .nomatch, .inexact])
             
         }.padding()
     }
+    
 }
 
 #Preview {
